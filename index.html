@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI-Powered Applicant Tracking System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <h1>Applicant Tracker</h1>
+  <p>Track candidates, score resumes against job descriptions, and never miss a hiring deadline.</p>
+</header>
+
+<main>
+  <section id="stats" class="stats" aria-label="Pipeline summary"></section>
+
+  <section class="panel">
+    <h2>Job openings</h2>
+    <form id="jobForm" class="grid">
+      <label>Job title<input id="jobTitle" required maxlength="80" placeholder="Frontend Developer"></label>
+      <label>Application deadline<input id="jobDeadline" type="date" required></label>
+      <label class="wide">Job description<textarea id="jobDesc" required rows="4" placeholder="Paste the responsibilities and required skills"></textarea></label>
+      <button type="submit" class="btn">Add job</button>
+    </form>
+    <div id="jobs" class="jobs"></div>
+  </section>
+
+  <section class="panel">
+    <h2>Add applicant</h2>
+    <form id="appForm" class="grid">
+      <label>Full name<input id="appName" required maxlength="80"></label>
+      <label>Email<input id="appEmail" type="email" required></label>
+      <label>Applying for<select id="appJob" required></select></label>
+      <label>Upload resume (.txt or .md)<input id="appFile" type="file" accept=".txt,.md,text/plain"></label>
+      <label class="wide">Resume text<textarea id="appResume" required rows="5" placeholder="Paste resume text here, or upload a text file above"></textarea></label>
+      <button type="submit" class="btn">Add applicant</button>
+    </form>
+  </section>
+
+  <section class="panel">
+    <h2>Applicants</h2>
+    <div class="filters">
+      <input id="fSearch" type="search" placeholder="Search name, email, or resume keyword" aria-label="Search applicants">
+      <select id="fJob" aria-label="Filter by job"></select>
+      <select id="fStatus" aria-label="Filter by status"></select>
+      <select id="fSort" aria-label="Sort applicants">
+        <option value="score">Best match first</option>
+        <option value="newest">Newest first</option>
+        <option value="name">Name A–Z</option>
+      </select>
+    </div>
+    <div id="applicants" class="cards"></div>
+  </section>
+</main>
+
+<footer>Match scores use TF-IDF cosine similarity and run entirely in your browser. Data is saved in this browser only.</footer>
+<script src="app.js"></script>
+</body>
+</html>
